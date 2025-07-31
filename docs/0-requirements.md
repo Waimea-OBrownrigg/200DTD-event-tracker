@@ -2,17 +2,17 @@
 
 ## Identified Problem or Need
 
-
+My parents want to keep track of when people are going out, have scheduled appointments, and other such things, to make organizing things easier.
 
 
 ## End-User Requirements
 
-Replace this text with a description of your typical end-users and their specific needs / expectations / requirements.
+My parents something easy to use, that lets them add and remove events, and then shows them when those events are coming up.
 
 
 ## Proposed Solution
 
-Replace this text with a brief statement about the system that you intend to create, including the key functionality it should have.
+I will create a website that will have a list of events organized by date, a form to add more, and a button to remove them.
 
 
 ---
