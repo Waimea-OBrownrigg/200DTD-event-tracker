@@ -7,7 +7,7 @@ My parents want to keep track of when people are going out, have scheduled appoi
 
 ## End-User Requirements
 
-My parents something easy to use, that lets them add and remove events, and then shows them when those events are coming up.
+My parents want something easy to use, that lets them add and remove events, and then shows them when those events are coming up.
 
 
 ## Proposed Solution
@@ -34,56 +34,54 @@ I need to make sure my website is bug-free and completes its task.
 
 ## Useability
 
-Replace this text with a clear explanation of what the implication means.
+Useability refers to how easy a website is to pick up and use, will the user intuitively know what to do, or will they need a guide.
 
 ### Relevance to the System
 
-Replace this text with an explanation of why the implication is relevant to this particular project.
+I don't want the end user to have to constantly need directions to navigate my site, it should be simple enough that they can look at a page and know exactly what everything does.
 
 ### Impact / Considerations
 
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this implication.
+I will need to make sure that everything of importance is labelled clearly, I also need to avoid over complicating things, so in short, just keep things simple.
 
 
 
-## NAME OF IMPLICATION 3
+## Aesthetics 
 
-Replace this text with a clear explanation of what the implication means.
+Aesthetic refers to how your product looks, this includes everything visual, the layout, the color palette, the font, all of these are related to aesthetics.
 
 ### Relevance to the System
 
-Replace this text with an explanation of why the implication is relevant to this particular project.
+Aesthetics have a huge impact on the user, users will be much less likely to use an ugly site than one that looks good.
 
 ### Impact / Considerations
 
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this implication.
+Very minor changes can be quite substantial when it comes to aesthetics, a single change to the color palette could change how the entire site looks, so for the most part, as long as you don't go out of your way to make it look as bad as possible, you should just be able to tweak your site based on feedback and be fine.
 
 
 
-## NAME OF IMPLICATION 4
+## Privacy 
 
-Replace this text with a clear explanation of what the implication means.
+Privacy refers to how well your website protects the data of whoever is using it.
 
 ### Relevance to the System
 
-Replace this text with an explanation of why the implication is relevant to this particular project.
+Since the users of my site will be entering possibly important information, it should be a priority that my website offers good privacy. 
 
 ### Impact / Considerations
 
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this implication.
+i need to create a system to make sure only the users off the site can access the data, as well as making sure the database itself is secure.
 
 
 
-## NAME OF IMPLICATION 5
+## Accessibility 
 
-Replace this text with a clear explanation of what the implication means.
+Accessibility refers to the ability of a website to be used under any conditions.
 
 ### Relevance to the System
 
-Replace this text with an explanation of why the implication is relevant to this particular project.
+I want my site to be as easy and convenient as possible to use, so that my users actually feel like it is worth using.
 
 ### Impact / Considerations
 
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this implication.
-
-
+I need to make sure that my website is easy to use on any device, and that the text is easy to read.
