@@ -12,77 +12,59 @@ Develop a prototype that simulates the key functionality of the system, then tes
 
 ## Initial Database Design
 
-Replace this text with notes regarding the DB design.
+First thing I did was make a simple database that contained only the very basics of what I would need, a table for the events(Including name, date, time, and a list of the people involved.), a table for people(Including their name and a list of the events they're in.), and a table connecting the two so that people can be assigned to events and vice versa.
 
-![SCREENSHOT OF DB DESIGN](screenshots/example.png)
+![SCREENSHOT OF DB DESIGN](screenshots/db1.png)
 
+After consultation with my end user, I quickly added columns for notes and info to the events table, and an availability column for the people table.
+
+![SCREENSHOT OF DB DESIGN](screenshots/db2.png)
 
 ---
 
-## UI 'Flow'
+## Initial UI Design
 
-The first stage of prototyping was to explore how the UI might 'flow' between states, based on the required functionality.
-
-This Figma demo shows the initial design for the UI 'flow':
+Then I started on my first UI design, it has six pages, the first is a list of all the events, with columns showing date, time, the name, and the people, next page was simply a list of the people, then there are two info pages, one for people, and one for events, and two more pages that are both forms for adding new people and events.
 
 **FIGMA FLOW - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT**
 
 ### Testing
 
-Replace this text with notes about what you did to test the UI flow and the outcome of the testing.
+After testing all the links I realized that all of the return buttons took you all the way back to the first page, which wasn't always what you wanted.
 
-### Changes / Improvements
+### Feedback
 
-Replace this text with notes any improvements you made as a result of the testing.
+I showed this version to my end user and was told that they wanted an option to view the upcoming events in a calendar format.
 
-*IMPROVED FIGMA FLOW - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+## Second UI Design
 
+In this version I added the aforementioned calendar format, as well as adding buttons to give you more control over where to go.
 
----
+**FIGMA FLOW - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT**
 
-## Initial UI Prototype
+## Colours
 
-The next stage of prototyping was to develop the layout for each screen of the UI.
+I prepared three options for my end user to pick from, and while doing this they also said they wanted the ability to colour-code events.
 
-This Figma demo shows the initial layout design for the UI:
+## Second Database Design
 
-*FIGMA PROTOTYPE - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+After this I added another table for colours so that the end user could add more as they wanted. 
 
-### Testing
+![SCREENSHOT OF DB DESIGN](screenshots/db3.png)
 
-Replace this text with notes about what you did to test the UI flow and the outcome of the testing.
+ eventually though, I decided against this as it was over complicating my database, so I simply made colour into a single column, I also removed some other columns that I didn't need.
 
-### Changes / Improvements
+![SCREENSHOT OF DB DESIGN](screenshots/db4.png)
 
-Replace this text with notes any improvements you made as a result of the testing.
+## Final UI Design
 
-*FIGMA IMPROVED PROTOTYPE - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+Not much changed functionality-wise from the second to final designs, but I implemented the chosen colour palette and removed un-needed buttons to give it a less cluttered look.
 
-
----
-
-## Refined UI Prototype
-
-Having established the layout of the UI screens, the prototype was refined visually, in terms of colour, fonts, etc.
-
-This Figma demo shows the UI with refinements applied:
-
-*FIGMA REFINED PROTOTYPE - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
-
-### Testing
-
-Replace this text with notes about what you did to test the UI flow and the outcome of the testing.
-
-### Changes / Improvements
-
-Replace this text with notes any improvements you made as a result of the testing.
-
-*FIGMA IMPROVED REFINED PROTOTYPE - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
-
-
----
+**FIGMA FLOW - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT**
 
 ## Sprint Review
+
+During this sprint I managed to take my idea from a concept to a really solid design that manages to be functional and aesthetically pleasing, and although I had a bit of trouble figuring out my database, I believe I'm happy with my final version. 
 
 Replace this text with a statement about how the sprint has moved the project forward - key success point, any things that didn't go so well, etc.
 
