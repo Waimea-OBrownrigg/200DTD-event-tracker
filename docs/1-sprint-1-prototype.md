@@ -26,7 +26,7 @@ After consultation with my end user, I quickly added columns for notes and info 
 
 Then I started on my first UI design, it has six pages, the first is a list of all the events, with columns showing date, time, the name, and the people, next page was simply a list of the people, then there are two info pages, one for people, and one for events, and two more pages that are both forms for adding new people and events.
 
-**FIGMA FLOW - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT**
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/LSzl7IDHJySNSuXooOp4vJ/Untitled?node-id=1-9&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A9&embed-host=share" allowfullscreen></iframe>
 
 ### Testing
 
@@ -40,7 +40,7 @@ I showed this version to my end user and was told that they wanted an option to 
 
 In this version I added the aforementioned calendar format, as well as adding buttons to give you more control over where to go.
 
-**FIGMA FLOW - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT**
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/jFS1CjPabqmKelJAqZXoEC/Untitled--Copy-?scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&node-id=1-9&starting-point-node-id=1%3A9&embed-host=share" allowfullscreen></iframe>
 
 ## Colours
 
@@ -52,7 +52,7 @@ After this I added another table for colours so that the end user could add more
 
 ![SCREENSHOT OF DB DESIGN](screenshots/db3.png)
 
- eventually though, I decided against this as it was over complicating my database, so I simply made colour into a single column, I also removed some other columns that I didn't need.
+ eventually though, I decided against this as it was over complicating my database, so I simply made colour into a single column, I also removed some other columns that I didn't need, and cleaned up the tables as a whole.
 
 ![SCREENSHOT OF DB DESIGN](screenshots/db4.png)
 
@@ -60,7 +60,7 @@ After this I added another table for colours so that the end user could add more
 
 Not much changed functionality-wise from the second to final designs, but I implemented the chosen colour palette and removed un-needed buttons to give it a less cluttered look.
 
-**FIGMA FLOW - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT**
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/2b1RF5UQ7M2zAOFe4P5bbW/titled?scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&node-id=3-3&starting-point-node-id=3%3A3&embed-host=share" allowfullscreen></iframe>
 
 ## Sprint Review
 
