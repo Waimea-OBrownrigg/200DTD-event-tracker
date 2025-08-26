@@ -1,0 +1,67 @@
+{#=====================================================
+  Home page
+  - Hero style greeting banner
+  - List of things passed in as 'things' array
+  - Form for adding a new thing
+=====================================================#}
+
+{% extends 'pages/base.jinja' %}
+
+
+{% block title %}
+
+    Event Calendar
+
+{% endblock %}
+
+{% block nav %}
+
+    <h1>Event List</h1>
+
+{% endblock %}
+
+{% block content %}
+
+        <table>
+        <thead>
+            <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Name</th>
+            <th scope="col">Time</th>
+            <th scope="col">People</th>
+            <th scope="col">Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for event in events %}
+            <tr>
+                <th scope="row">{{event.date}}</th>
+                <td>{{event.name}}</td>
+                <td>{{event.time}}</td>
+                
+                <td class="people">
+                    {% for person in people %}
+
+                        {% if person.event_id == event.id %}
+                            <span class="comma">{{ person.name }}</span>
+                        {% endif %}
+
+                    {% else %}
+
+                        None
+
+                    {% endfor %}
+                
+                </td>
+                
+                <td>{{event.notes}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+    <a href="/event_form" role="button">Add Event</a>
+    <a href="/people_list" role="button">View People</a>
+
+{% endblock %}
+

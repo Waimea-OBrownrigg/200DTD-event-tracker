@@ -26,7 +26,7 @@ init_datetime(app)  # Handle UTC dates in timestamps
 
 
 #-----------------------------------------------------------
-# Home page route
+# Event list page route
 #-----------------------------------------------------------
 @app.get("/")
 def index():
@@ -36,91 +36,33 @@ def index():
         result = client.execute(sql, params)
         events = result.rows
         print(events)
-    return render_template("pages/home.jinja", events=events)
-
-
-#-----------------------------------------------------------
-# About page route
-#-----------------------------------------------------------
-@app.get("/about/")
-def about():
-    return render_template("pages/about.jinja")
-
-
-#-----------------------------------------------------------
-# Things page route - Show all the things, and new thing form
-#-----------------------------------------------------------
-@app.get("/things/")
-def show_all_things():
-    with connect_db() as client:
-        # Get all the things from the DB
-        sql = "SELECT id, name FROM things ORDER BY name ASC"
-        params = []
+        
+        sql = """
+            SELECT 
+                involved.event_id,
+                people.name 
+            FROM people
+            JOIN involved ON people.id = involved.people_id 
+            ORDER BY people.name ASC
+        """
+        params=[]
         result = client.execute(sql, params)
-        things = result.rows
-
-        # And show them on the page
-        return render_template("pages/things.jinja", things=things)
+        people = result.rows
+        print(people)
+        
+    return render_template("pages/event_list.jinja", events=events, people=people)
 
 
 #-----------------------------------------------------------
-# Thing page route - Show details of a single thing
+# People list page route
 #-----------------------------------------------------------
-@app.get("/thing/<int:id>")
-def show_one_thing(id):
+@app.get("/people_list")
+def people():
     with connect_db() as client:
-        # Get the thing details from the DB
-        sql = "SELECT id, name, price FROM things WHERE id=?"
-        params = [id]
+        sql = "SELECT name FROM people ORDER BY name ASC"
+        params=[]
         result = client.execute(sql, params)
+        people = result.rows
+        print(people)
 
-        # Did we get a result?
-        if result.rows:
-            # yes, so show it on the page
-            thing = result.rows[0]
-            return render_template("pages/thing.jinja", thing=thing)
-
-        else:
-            # No, so show error
-            return not_found_error()
-
-
-#-----------------------------------------------------------
-# Route for adding a thing, using data posted from a form
-#-----------------------------------------------------------
-@app.post("/add")
-def add_a_thing():
-    # Get the data from the form
-    name  = request.form.get("name")
-    price = request.form.get("price")
-
-    # Sanitise the text inputs
-    name = html.escape(name)
-
-    with connect_db() as client:
-        # Add the thing to the DB
-        sql = "INSERT INTO things (name, price) VALUES (?, ?)"
-        params = [name, price]
-        client.execute(sql, params)
-
-        # Go back to the home page
-        flash(f"Thing '{name}' added", "success")
-        return redirect("/things")
-
-
-#-----------------------------------------------------------
-# Route for deleting a thing, Id given in the route
-#-----------------------------------------------------------
-@app.get("/delete/<int:id>")
-def delete_a_thing(id):
-    with connect_db() as client:
-        # Delete the thing from the DB
-        sql = "DELETE FROM things WHERE id=?"
-        params = [id]
-        client.execute(sql, params)
-
-        # Go back to the home page
-        flash("Thing deleted", "success")
-        return redirect("/things")
-
-
+    return render_template("pages/people_list.jinja", people=people)

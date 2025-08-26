@@ -1,0 +1,44 @@
+{#=====================================================
+  Home page
+  - Hero style greeting banner
+  - List of things passed in as 'things' array
+  - Form for adding a new thing
+=====================================================#}
+
+{% extends 'pages/base.jinja' %}
+
+
+{% block title %}
+
+    People list
+
+{% endblock %}
+
+{% block nav %}
+
+    <h1>People</h1>
+
+{% endblock %}
+
+{% block content %}
+
+        <table>
+        <thead>
+            <tr>
+            <th scope="col">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for person in people %}
+            <tr>
+                <th scope="row">{{person.name}}</th>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+    <a href="/" role="button">Return</a>
+    <a href="event_form" role="button">Add Event</a>
+
+{% endblock %}
+
