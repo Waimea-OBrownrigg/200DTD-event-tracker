@@ -66,3 +66,75 @@ def people():
         print(people)
 
     return render_template("pages/people_list.jinja", people=people)
+
+
+#-----------------------------------------------------------
+# Event info page route
+#-----------------------------------------------------------
+@app.get("/event_info")
+def e_info():
+    with connect_db() as client:
+        sql = "SELECT * FROM events ORDER BY date ASC"
+        params=[]
+        result = client.execute(sql, params)
+        events = result.rows
+        print(events)
+        
+        sql = """
+            SELECT 
+                involved.event_id,
+                people.name 
+            FROM people
+            JOIN involved ON people.id = involved.people_id 
+            ORDER BY people.name ASC
+        """
+        params=[]
+        result = client.execute(sql, params)
+        people = result.rows
+        print(people)
+        
+    return render_template("pages/event_info.jinja", events=events, people=people)
+
+
+#-----------------------------------------------------------
+# People info page route
+#-----------------------------------------------------------
+@app.get("/people_info")
+def p_info():
+    with connect_db() as client:
+        sql = "SELECT * FROM people ORDER BY name ASC"
+        params=[]
+        result = client.execute(sql, params)
+        people = result.rows
+        print(people)
+        
+        sql = """
+            SELECT 
+                involved.people_id,
+                events.name 
+            FROM events
+            JOIN involved ON events.id = involved.event_id 
+            ORDER BY events.name ASC
+        """
+        params=[]
+        result = client.execute(sql, params)
+        events = result.rows
+        print(events)
+        
+    return render_template("pages/people_info.jinja", events=events, people=people)
+
+
+#-----------------------------------------------------------
+# Event form page route
+#-----------------------------------------------------------
+@app.get("/event_form")
+def e_form():
+    return render_template("pages/event_form.jinja")
+
+
+#-----------------------------------------------------------
+# Person form page route
+#-----------------------------------------------------------
+@app.get("/people_form")
+def p_form():
+    return render_template("pages/people_form.jinja")
