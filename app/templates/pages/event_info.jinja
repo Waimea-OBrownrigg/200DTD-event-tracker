@@ -9,13 +9,32 @@
 
 {% block nav %}
 
-    <h1>name</h1>
+    <h1>{{event.name}}</h1>
 
 {% endblock %}
 
 {% block content %}
 
+    <p>{{event.date}} {{event.time}}</p>
+
+    <p>{{event.info}}</p>
+
+    <p>{{event.notes}}</p>
+
+    <p>
+        {% for person in people %}
+
+            {% if person.event_id == event.id %}
+                <span class="comma">{{ person.name }}</span>
+            {% endif %}
+
+        {% else %}
+
+            None
+
+        {% endfor %}
+    </p>
+
     <a href="/" role="button">Return</a>
-    <a href="event_form" role="button">Add Event</a>
 
 {% endblock %}

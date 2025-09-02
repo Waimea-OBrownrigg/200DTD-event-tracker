@@ -29,7 +29,7 @@
         {% for event in events %}
             <tr>
                 <th scope="row">{{event.date}}</th>
-                <td><a href="/event_info">{{event.name}}</a></td>
+                <td><a href="/event_info/{{event.id}}">{{event.name}}</a></td>
                 <td>{{event.time}}</td>
                 
                 <td class="people">

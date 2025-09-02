@@ -71,14 +71,14 @@ def people():
 #-----------------------------------------------------------
 # Event info page route
 #-----------------------------------------------------------
-@app.get("/event_info")
-def e_info():
+@app.get("/event_info/<int:id>")
+def e_info(id):
     with connect_db() as client:
-        sql = "SELECT * FROM events ORDER BY date ASC"
-        params=[]
+        sql = "SELECT * FROM events WHERE id=?"
+        params=[id]
         result = client.execute(sql, params)
-        events = result.rows
-        print(events)
+        event = result.rows[0]
+        print(event)
         
         sql = """
             SELECT 
@@ -93,7 +93,7 @@ def e_info():
         people = result.rows
         print(people)
         
-    return render_template("pages/event_info.jinja", events=events, people=people)
+    return render_template("pages/event_info.jinja", event=event, people=people)
 
 
 #-----------------------------------------------------------
