@@ -59,7 +59,7 @@ def index():
 @app.get("/people_list")
 def people():
     with connect_db() as client:
-        sql = "SELECT name FROM people ORDER BY name ASC"
+        sql = "SELECT id, name FROM people ORDER BY name ASC"
         params=[]
         result = client.execute(sql, params)
         people = result.rows
@@ -99,21 +99,21 @@ def e_info(id):
 #-----------------------------------------------------------
 # People info page route
 #-----------------------------------------------------------
-@app.get("/people_info")
-def p_info():
+@app.get("/people_info/<int:id>")
+def p_info(id):
     with connect_db() as client:
-        sql = "SELECT * FROM people ORDER BY name ASC"
-        params=[]
+        sql = "SELECT * FROM people WHERE id=?"
+        params=[id]
         result = client.execute(sql, params)
-        people = result.rows
-        print(people)
+        person = result.rows[0]
+        print(person)
         
         sql = """
-            SELECT 
+            SELECT
                 involved.people_id,
-                events.name 
+                events.name
             FROM events
-            JOIN involved ON events.id = involved.event_id 
+            JOIN involved ON events.id = involved.event_id
             ORDER BY events.name ASC
         """
         params=[]
@@ -121,7 +121,7 @@ def p_info():
         events = result.rows
         print(events)
         
-    return render_template("pages/people_info.jinja", events=events, people=people)
+    return render_template("pages/people_info.jinja", person=person, events=events)
 
 
 #-----------------------------------------------------------

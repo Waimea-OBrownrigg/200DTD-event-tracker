@@ -4,7 +4,7 @@
 
 
 /* Add a comma after each span item that is not the last */
-td.people span.comma:not(:last-of-type)::after {
+span.comma:not(:last-of-type)::after {
     content: ","
 }
 
