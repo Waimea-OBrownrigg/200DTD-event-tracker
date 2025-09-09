@@ -125,6 +125,36 @@ def p_info(id):
 
 
 #-----------------------------------------------------------
+# Delete an event
+#-----------------------------------------------------------
+@app.get("/delete_event/<int:id>")
+def delete_e(id):
+    with connect_db() as client:
+        sql = "DELETE FROM events WHERE id=?"
+        values = [id]
+        client.execute(sql, values)
+        sql = "DELETE FROM involved WHERE event_id=?"
+        values = [id]
+        client.execute(sql, values)
+        return redirect("/")
+    
+
+#-----------------------------------------------------------
+# Delete a person
+#-----------------------------------------------------------
+@app.get("/delete_person/<int:id>")
+def delete_p(id):
+    with connect_db() as client:
+        sql = "DELETE FROM people WHERE id=?"
+        values = [id]
+        client.execute(sql, values)
+        sql = "DELETE FROM involved WHERE person_id=?"
+        values = [id]
+        client.execute(sql, values)
+        return redirect("/")
+    
+
+#-----------------------------------------------------------
 # Event form page route
 #-----------------------------------------------------------
 @app.get("/event_form")
@@ -138,3 +168,71 @@ def e_form():
 @app.get("/people_form")
 def p_form():
     return render_template("pages/people_form.jinja")
+
+
+#-----------------------------------------------------------
+# Add a new event
+#-----------------------------------------------------------
+@app.post("/add_event")
+def add_e():
+    with connect_db() as client:
+        name = request.form.get("name")
+        date = request.form.get("date")
+        time = request.form.get("time")
+        notes = request.form.get("notes")
+        info = request.form.get("info")
+        sql = """
+            INSERT INTO events (name, date, time, notes, info)
+            VALUES (?,?,?,?,?)
+        """
+        values = [name, date, time, notes, info]
+        client.execute(sql, values)
+        return redirect("/event_add_people")
+    
+
+#-----------------------------------------------------------
+# Add people to an event page route
+#-----------------------------------------------------------
+@app.get("/event_add_people")
+def add_p_to_e():
+    with connect_db() as client:
+        sql = "SELECT id, name FROM events ORDER BY date ASC"
+        params=[]
+        result = client.execute(sql, params)
+        events = result.rows
+        print(events)
+        
+        sql = """
+            SELECT 
+                involved.event_id,
+                people.name 
+            FROM people
+            JOIN involved ON people.id = involved.people_id 
+            ORDER BY people.name ASC
+        """
+        params=[]
+        result = client.execute(sql, params)
+        people = result.rows
+        print(people)
+        
+    return render_template("pages/event_add_people.jinja", events=events, people=people)
+
+
+#-----------------------------------------------------------
+# Assign people to an event
+#-----------------------------------------------------------
+@app.post("/assign_person")
+def assign_p():
+    with connect_db() as client:
+        name = request.form.get("name")
+        date = request.form.get("date")
+        time = request.form.get("time")
+        notes = request.form.get("notes")
+        info = request.form.get("info")
+        sql = """
+            INSERT INTO events (name, date, time, notes, info)
+            VALUES (?,?,?,?,?)
+        """
+        values = [name, date, time, notes, info]
+        client.execute(sql, values)
+        return redirect("/event_add_people")

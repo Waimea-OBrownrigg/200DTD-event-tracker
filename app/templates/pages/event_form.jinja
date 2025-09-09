@@ -15,7 +15,34 @@
 
 {% block content %}
 
+    <article id="form">
+
+        <form action="/add_event" method="POST">
+            <label>
+                Name
+                <input name="name" type="text" required>
+            </label>
+            <label>
+                Date
+                <input name="date" type="date" required>
+            </label>
+            <label>
+                Time
+                <input name="time" type="time">
+            </label>
+            <label>
+                Notes
+                <input name="notes" type="text">
+            </label>
+            <label>
+                Info
+                <input name="info" type="text">
+            </label>
+            <button>submit</button>
+        </form>
+
+    </article>
+
     <a href="/" role="button">cancel</a>
-    <a href="event_form" role="button">Add Person</a>
 
 {% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'pages/base.jinja' %}
+
+
+{% block title %}
+
+    Event Form
+
+{% endblock %}
+
+{% block nav %}
+
+    <h1>Assign People</h1>
+
+{% endblock %}
+
+{% block content %}
+
+    <article id="form">
+
+        <form action="/assign_person" method="POST">
+            <button>submit</button>
+        </form>
+
+    </article>
+
+    <a href="/" role="button">finish</a>
+
+{% endblock %}
