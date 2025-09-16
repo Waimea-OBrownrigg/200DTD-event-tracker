@@ -186,43 +186,68 @@ def add_e():
             VALUES (?,?,?,?,?)
         """
         values = [name, date, time, notes, info]
-        client.execute(sql, values)
-        return redirect("/event_add_people")
+        result = client.execute(sql, values)
+        new_event_id = result.last_insert_rowid
+
+        return redirect(f"/event_add_people/{new_event_id}")
     
 
 #-----------------------------------------------------------
 # Add people to an event page route
 #-----------------------------------------------------------
-@app.get("/event_add_people")
-def add_p_to_e():
+@app.get("/event_add_people/<int:id>")
+def add_p_to_e(id):
     with connect_db() as client:
-        sql = "SELECT id, name FROM events ORDER BY date ASC"
-        params=[]
+        sql = "SELECT id, name FROM events WHERE id = ?"
+        params=[id]
         result = client.execute(sql, params)
-        events = result.rows
-        print(events)
-        
-        sql = """
-            SELECT 
-                involved.event_id,
-                people.name 
-            FROM people
-            JOIN involved ON people.id = involved.people_id 
-            ORDER BY people.name ASC
-        """
-        params=[]
-        result = client.execute(sql, params)
-        people = result.rows
-        print(people)
-        
-    return render_template("pages/event_add_people.jinja", events=events, people=people)
+
+        if result.rows:
+            event = result.rows[0]
+            
+            sql = """
+                SELECT 
+                    involved.event_id,
+                    people.name 
+                
+                FROM people
+                JOIN involved ON people.id = involved.people_id 
+                
+                WHERE involved.event_id = ?
+
+                ORDER BY people.name ASC
+            """
+            params=[id]
+            result = client.execute(sql, params)
+            people = result.rows
+            
+            sql = """
+                SELECT id, name
+                FROM people
+                
+                -- Selects ids of people who are not already involved
+                WHERE people.id NOT IN (
+                    SELECT involved.people_id
+                    FROM involved
+                    JOIN events ON involved.event_id = events.id
+                    WHERE events.id = ?
+                )
+            """
+            params=[id]
+            result = client.execute(sql, params)
+            other_people = result.rows
+            
+        return render_template("pages/event_add_people.jinja", 
+                               event=event, 
+                               people=people, 
+                               other_people=other_people)
 
 
 #-----------------------------------------------------------
 # Assign people to an event
 #-----------------------------------------------------------
-@app.post("/assign_person")
-def assign_p():
+@app.post("/event_add_people/<int:id>")
+def assign_p(id):
     with connect_db() as client:
         name = request.form.get("name")
         date = request.form.get("date")
@@ -235,4 +260,4 @@ def assign_p():
         """
         values = [name, date, time, notes, info]
         client.execute(sql, values)
-        return redirect("/event_add_people")
+        return redirect(f"/event_add_people/{id}")

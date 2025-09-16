@@ -15,13 +15,35 @@
 
 {% block content %}
 
+    <article>
+    
+        <ul>
+            {% for person in people %}
+                <li>{{person.name}}</li>
+            {% endfor %}
+        </ul>
+    
+    </article>
+    
     <article id="form">
 
-        <form action="/assign_person" method="POST">
+        <form action="/assign_person/{{ event.id }}" method="POST">
+            <select>
+            
+                <option selected disabled>Choose an Option</option>
+    
+                {% for person in other_people %}
+                    <option>{{person.name}}</option>
+                {% endfor %}
+                
+            </select>
+
             <button>submit</button>
         </form>
 
     </article>
+
+
 
     <a href="/" role="button">finish</a>
 
