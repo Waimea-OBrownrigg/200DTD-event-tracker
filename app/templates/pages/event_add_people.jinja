@@ -17,6 +17,9 @@
 
     <article>
     
+        <h2>{{event.name}}</h2>
+        <p>People involved:</p>
+
         <ul>
             {% for person in people %}
                 <li>{{person.name}}</li>
@@ -28,7 +31,8 @@
     <article id="form">
 
         <form action="/assign_person/{{ event.id }}" method="POST">
-            <select>
+
+            <select name="person">
             
                 <option selected disabled>Choose an Option</option>
     

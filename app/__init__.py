@@ -246,18 +246,25 @@ def add_p_to_e(id):
 #-----------------------------------------------------------
 # Assign people to an event
 #-----------------------------------------------------------
-@app.post("/event_add_people/<int:id>")
+@app.post("/assign_person/<int:id>")
 def assign_p(id):
     with connect_db() as client:
-        name = request.form.get("name")
-        date = request.form.get("date")
-        time = request.form.get("time")
-        notes = request.form.get("notes")
-        info = request.form.get("info")
+
+        person = request.form.get("person")
+        print(person)
         sql = """
-            INSERT INTO events (name, date, time, notes, info)
-            VALUES (?,?,?,?,?)
+            SELECT id FROM people WHERE name=?
         """
-        values = [name, date, time, notes, info]
+        values=[person]
+        result = client.execute(sql, values)
+        print(result)
+        p_id = result.rows[0][0]
+
+
+        sql = """
+            INSERT INTO involved (event_id, people_id)
+            VALUES (?,?)
+        """
+        values = [id, p_id]
         client.execute(sql, values)
         return redirect(f"/event_add_people/{id}")
