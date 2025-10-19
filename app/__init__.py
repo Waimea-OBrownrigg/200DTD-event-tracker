@@ -148,7 +148,7 @@ def delete_p(id):
         sql = "DELETE FROM people WHERE id=?"
         values = [id]
         client.execute(sql, values)
-        sql = "DELETE FROM involved WHERE person_id=?"
+        sql = "DELETE FROM involved WHERE people_id=?"
         values = [id]
         client.execute(sql, values)
         return redirect("/")
@@ -268,3 +268,20 @@ def assign_p(id):
         values = [id, p_id]
         client.execute(sql, values)
         return redirect(f"/event_add_people/{id}")
+    
+#-----------------------------------------------------------
+# Add a new person
+#-----------------------------------------------------------
+@app.post("/add_person")
+def add_p():
+    with connect_db() as client:
+        name = request.form.get("name")
+        availability = request.form.get("availability")
+        sql = """
+            INSERT INTO people (name, availability)
+            VALUES (?,?)
+        """
+        values = [name, availability]
+        result = client.execute(sql, values)
+
+        return redirect("/people_list")
