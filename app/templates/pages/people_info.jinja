@@ -31,6 +31,44 @@
         {% endfor %}
     </p>
 
+    <article id="form">
+
+        <form action="/assign_event/{{ person.id }}" method="POST">
+
+            <select name="event">
+            
+                <option selected disabled>Add an event.</option>
+    
+                {% for event in other_events %}
+                    <option>{{event.name}}</option>
+                {% endfor %}
+                
+            </select>
+
+            <button>submit</button>
+        </form>
+
+    </article>
+
+    <article id="form">
+
+        <form action="/remove_event/{{ person.id }}" method="POST">
+
+            <select name="event">
+            
+                <option selected disabled>Remove an event.</option>
+    
+                {% for event in connected_events %}
+                    <option>{{event.name}}</option>
+                {% endfor %}
+                
+            </select>
+
+            <button>submit</button>
+        </form>
+
+    </article>
+
     <a href="/people_list" role="button">Return</a>
     <a role="button" onclick="return confirm('Are you sure?')" href="/delete_person/{{person.id}}">Delete</a>
 

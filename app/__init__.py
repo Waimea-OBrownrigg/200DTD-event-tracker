@@ -120,8 +120,40 @@ def p_info(id):
         result = client.execute(sql, params)
         events = result.rows
         print(events)
+
+        sql = """
+                SELECT id, name
+                FROM events
+                
+                -- Selects ids of events that are not already involved
+                WHERE events.id NOT IN (
+                    SELECT involved.event_id
+                    FROM involved
+                    JOIN people ON involved.people_id = people.id
+                    WHERE people.id = ?
+                )
+            """
+        params=[id]
+        result = client.execute(sql, params)
+        other_events = result.rows
+
+        sql = """
+                SELECT id, name
+                FROM events
+                
+                -- Selects ids of events that are involved
+                WHERE events.id IN (
+                    SELECT involved.event_id
+                    FROM involved
+                    JOIN people ON involved.people_id = people.id
+                    WHERE people.id = ?
+                )
+            """
+        params=[id]
+        result = client.execute(sql, params)
+        connected_events = result.rows
         
-    return render_template("pages/people_info.jinja", person=person, events=events)
+    return render_template("pages/people_info.jinja", person=person, events=events, other_events=other_events, connected_events=connected_events)
 
 
 #-----------------------------------------------------------
@@ -285,3 +317,50 @@ def add_p():
         result = client.execute(sql, values)
 
         return redirect("/people_list")
+    
+#-----------------------------------------------------------
+# Assign an event to a person
+#-----------------------------------------------------------
+@app.post("/assign_event/<int:id>")
+def assign_e(id):
+    with connect_db() as client:
+
+        event = request.form.get("event")
+        print(event)
+        sql = """
+            SELECT id FROM events WHERE name=?
+        """
+        values=[event]
+        result = client.execute(sql, values)
+        print(result)
+        e_id = result.rows[0][0]
+
+
+        sql = """
+            INSERT INTO involved (people_id, event_id)
+            VALUES (?,?)
+        """
+        values = [id, e_id]
+        client.execute(sql, values)
+        return redirect(f"/people_info/{id}")
+    
+#-----------------------------------------------------------
+# remove an event connection
+#-----------------------------------------------------------
+@app.post("/remove_event/<int:id>")
+def remove_e(id):
+    with connect_db() as client:
+
+        event = request.form.get("event")
+        print(event)
+        sql = """
+            SELECT id FROM events WHERE name=?
+        """
+        values=[event]
+        result = client.execute(sql, values)
+        print(result)
+        e_id = result.rows[0][0]
+        sql = "DELETE FROM involved WHERE event_id=?"
+        values = [e_id]
+        client.execute(sql, values)
+        return redirect(f"/people_info/{id}")
