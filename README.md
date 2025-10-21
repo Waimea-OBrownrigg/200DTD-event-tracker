@@ -1,6 +1,6 @@
-# PROJECT NAME HERE
+# Event Tracker
 
-by Oliver
+Developed by Oliver Brownrigg
 
 
 ---
@@ -21,6 +21,7 @@ My project will be an event tracker for a group of people, a website where you c
 ## Project Links
 
 - [GitHub repo for the project](https://...)
+- [Project Documentation](https://waimea-obrownrigg.github.io/200DTD-event-tracker/)
 - [Live web app](https://...)
 
 
