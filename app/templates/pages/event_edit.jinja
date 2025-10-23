@@ -1,0 +1,48 @@
+{% extends 'pages/base.jinja' %}
+
+
+{% block title %}
+
+    Edit Event
+
+{% endblock %}
+
+{% block nav %}
+
+    <h1>Edit an Event</h1>
+
+{% endblock %}
+
+{% block content %}
+
+    <article id="form">
+
+        <form action="/changing_event/{{event.id}}" method="POST">
+            <label>
+                Name
+                <input name="name" type="text" value="{{event.name}}" required>
+            </label>
+            <label>
+                Date
+                <input name="date" type="date" value="{{event.date}}" required>
+            </label>
+            <label>
+                Time
+                <input name="time" type="time" value="{{event.time}}">
+            </label>
+            <label>
+                Notes
+                <input name="notes" type="text" value="{{event.notes}}">
+            </label>
+            <label>
+                Info
+                <input name="info" type="text" value="{{event.info}}">
+            </label>
+            <button>submit</button>
+        </form>
+
+    </article>
+
+    <a href="/" role="button">cancel</a>
+
+{% endblock %}

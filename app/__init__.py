@@ -364,3 +364,69 @@ def remove_e(id):
         values = [e_id]
         client.execute(sql, values)
         return redirect(f"/people_info/{id}")
+
+#-----------------------------------------------------------
+# Edit event page route
+#-----------------------------------------------------------
+@app.get("/event_edit/<int:id>")
+def e_edit(id):
+    with connect_db() as client:
+        sql = "SELECT * FROM events WHERE id=?"
+        params=[id]
+        result = client.execute(sql, params)
+        event = result.rows[0]
+        print(event)
+        
+    return render_template("/event_edit.jinja", event=event)
+
+#-----------------------------------------------------------
+# Edit an event
+#-----------------------------------------------------------
+@app.post("/changing_event/<int:id>")
+def change_e(id):
+    with connect_db() as client:
+        name = request.form.get("name")
+        date = request.form.get("date")
+        time = request.form.get("time")
+        notes = request.form.get("notes")
+        info = request.form.get("info")
+        sql = """
+            UPDATE events (name, date, time, notes, info)
+            WHERE id=?"
+            VALUES (?,?,?,?,?,?)
+        """
+        values = [name, date, time, notes, info, id]
+        result = client.execute(sql, values)
+
+        return redirect(f"/event_info/{id}")
+
+#-----------------------------------------------------------
+# Edit person page route
+#-----------------------------------------------------------
+@app.get("/person_edit/<int:id>")
+def p_edit(id):
+    with connect_db() as client:
+        sql = "SELECT * FROM people WHERE id=?"
+        params=[id]
+        result = client.execute(sql, params)
+        person = result.rows[0]
+        
+    return render_template("/people_edit.jinja", person=person)
+
+#-----------------------------------------------------------
+# Edit a person
+#-----------------------------------------------------------
+@app.post("/changing_person/<int:id>")
+def change_p(id):
+    with connect_db() as client:
+        name = request.form.get("name")
+        availability = request.form.get("availability")
+        sql = """
+            UPDATE people (name, availability)
+            WHERE id=?"
+            VALUES (?,?,?)
+        """
+        values = [name, availability, id]
+        result = client.execute(sql, values)
+
+        return redirect(f"/people_info/{id}")

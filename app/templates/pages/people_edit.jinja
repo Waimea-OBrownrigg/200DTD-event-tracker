@@ -1,0 +1,37 @@
+{% extends 'pages/base.jinja' %}
+
+
+{% block title %}
+
+    Edit Person
+
+{% endblock %}
+
+{% block nav %}
+
+    <h1>Edit a Person</h1>
+
+{% endblock %}
+
+{% block content %}
+
+    <article id="form">
+
+        <form action="/changing_person/{{person.id}}" method="POST">
+            <label>
+                Name
+                <input name="name" type="text" value="{{person.name}}" required>
+            </label>
+            <label>
+                Availability
+                <input name="date" type="date" value="{{person.availability}}">
+            </label>
+        
+            <button>submit</button>
+        </form>
+
+    </article>
+
+    <a href="/" role="button">cancel</a>
+
+{% endblock %}
