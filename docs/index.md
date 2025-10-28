@@ -1,19 +1,19 @@
-# PROJECT NAME HERE
+# Event Tracker
 
-by YOUR NAME HERE
+Developed by Oliver Brownrigg
 
 
 ---
 
 ## Project Description
 
-Replace this text with your project description and list the key features below
+My project will be an event tracker for a group of people, a website where you can write down various upcoming events, and assign them to various people in the group, and it will display them in order based on which is the closest.
 
-- Feature 1 here
-- Feature 2 here
-- Feature 3 here
-- Feature 4 here
-- Feature 5 here
+- Displays a list of all the events in order of date, from closest to farthest away.
+- The list tells you who is involved, an the time and date of the event.
+- Displays a list of all the people.
+- Gives you the ability to add, edit, and remove events and people.
+- When clicking on an event or person, it will show you detailed information about it.
 
 
 ---
