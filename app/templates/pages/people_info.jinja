@@ -70,6 +70,7 @@
     </article>
 
     <a href="/people_list" role="button">Return</a>
+    <a href="/person_edit/{{person.id}}" role="button">Edit</a>
     <a role="button" onclick="return confirm('Are you sure?')" href="/delete_person/{{person.id}}">Delete</a>
 
 {% endblock %}

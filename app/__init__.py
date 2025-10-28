@@ -377,7 +377,7 @@ def e_edit(id):
         event = result.rows[0]
         print(event)
         
-    return render_template("/event_edit.jinja", event=event)
+    return render_template("pages/event_edit.jinja", event=event)
 
 #-----------------------------------------------------------
 # Edit an event
@@ -391,9 +391,7 @@ def change_e(id):
         notes = request.form.get("notes")
         info = request.form.get("info")
         sql = """
-            UPDATE events (name, date, time, notes, info)
-            WHERE id=?"
-            VALUES (?,?,?,?,?,?)
+            UPDATE events SET name=?, date=?, time=?, notes=?, info=? WHERE id=?
         """
         values = [name, date, time, notes, info, id]
         result = client.execute(sql, values)
@@ -411,7 +409,7 @@ def p_edit(id):
         result = client.execute(sql, params)
         person = result.rows[0]
         
-    return render_template("/people_edit.jinja", person=person)
+    return render_template("pages/people_edit.jinja", person=person)
 
 #-----------------------------------------------------------
 # Edit a person
@@ -422,9 +420,7 @@ def change_p(id):
         name = request.form.get("name")
         availability = request.form.get("availability")
         sql = """
-            UPDATE people (name, availability)
-            WHERE id=?"
-            VALUES (?,?,?)
+            UPDATE people SET name=?, availability=? WHERE id=?
         """
         values = [name, availability, id]
         result = client.execute(sql, values)
