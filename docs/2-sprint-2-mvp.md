@@ -10,9 +10,11 @@ Develop a bare-bones, working web application that provides the key functionalit
 
 ## Implemented Database Schema
 
-Replace this text with notes regarding the DB schema.
+The database consists of 3 tables, one to store people, one to store events, and one to store information on which people are assigned to which events.
 
-![SCREENSHOT OF DB SCHEMA](screenshots/example.png)
+![SCREENSHOT OF DB SCHEMA](screenshots/eventdb.png)
+![SCREENSHOT OF DB SCHEMA](screenshots/peopledb.png)
+![SCREENSHOT OF DB SCHEMA](screenshots/involveddb.png)
 
 
 ---

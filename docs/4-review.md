@@ -2,38 +2,24 @@
 
 ## Addressing Relevant Implications
 
-### NAME OF IMPLICATION 1
+### Functionality
 
-Replace this text with notes about what you did during the project to address the implication - design features, etc.
-
-
-### NAME OF IMPLICATION 2
-
-Replace this text with notes about what you did during the project to address the implication - design features, etc.
+I made sure that all of the pages were accessible and that all the database actions worked.
 
 
-### NAME OF IMPLICATION 3
+### Useability
 
-Replace this text with notes about what you did during the project to address the implication - design features, etc.
-
-
-### NAME OF IMPLICATION 4
-
-Replace this text with notes about what you did during the project to address the implication - design features, etc.
+I made sure that everything was in the most convenient place that also made sense, and made sure that completing actions would redirect you to the most convenient place.
 
 
-### NAME OF IMPLICATION 5
+### Aesthetics 
 
-Replace this text with notes about what you did during the project to address the implication - design features, etc.
+I tried to make sure that everything was laid out nicely and clearly, and avoided making pages too cluttered.
 
 
 ---
 
 ## Overall Review
 
-Replace these words with a brief review of how the project went in terms of:
-- What went well?
-- What didn't go so well?
-- How did the testing/trialling impact the final system?
-- What would you do differently if you could?
+Overall, my website works well, but I had to cut some of the more complex features, due to time constraints, but testing helped me to refine experience of going from page to page.
 
